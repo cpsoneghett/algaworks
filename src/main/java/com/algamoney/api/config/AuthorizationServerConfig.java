@@ -14,9 +14,9 @@ import org.springframework.security.oauth2.provider.token.store.InMemoryTokenSto
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
-
+	
 	@Autowired
-	private OAuthSecurityConfig config;
+	private AuthenticationManager authenticationManager;
 	
 	@Override
 	public void configure( ClientDetailsServiceConfigurer clients ) throws Exception {
@@ -36,7 +36,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
 		endpoints
 			.tokenStore( tokenStore() )
-			.authenticationManager( config.authenticationManager() );
+			.authenticationManager( authenticationManager );
 	}
 
 	@Bean
