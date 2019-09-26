@@ -53,6 +53,11 @@
 			<artifactId>spring-security-oauth2</artifactId>
 			<version>2.3.6.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-jwt</artifactId>
+			<version>1.0.10.RELEASE</version>
+		</dependency>
 
 		<!-- mysql -->
 		<dependency>
@@ -98,7 +103,8 @@
 					<source>12</source>
 					<target>12</target>
 					<failOnError>false</failOnError>
-					<generatedSourcesDirectory>src/main/java</generatedSourcesDirectory>
+					<generatedSourcesDirectory>src/main/java
+					</generatedSourcesDirectory>
 				</configuration>
 			</plugin>
 		</plugins>
