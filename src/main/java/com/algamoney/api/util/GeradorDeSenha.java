@@ -6,7 +6,7 @@ public class GeradorDeSenha {
 
 	public static void main( String[] args ) {
 		
-		String senhaTeste = "1f2cfa";
+		String senhaTeste = "mobile";
 		
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		

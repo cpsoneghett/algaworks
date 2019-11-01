@@ -33,13 +33,13 @@ public class CategoriaResource {
 	private ApplicationEventPublisher publisher;
 
 	@GetMapping
-	@PreAuthorize( "hasAuthority('ROLE_PESQUISAR_CATEGORIA')" )
+	@PreAuthorize( "hasAuthority('ROLE_PESQUISAR_CATEGORIA') and #oauth2.hasScope('read')" )
 	public List<Categoria> listar() {
 		return categoriaRepository.findAll();
 	}
 
 	@PostMapping
-	@PreAuthorize( "hasAuthority('ROLE_CADASTRAR_CATEGORIA')" )
+	@PreAuthorize( "hasAuthority('ROLE_CADASTRAR_CATEGORIA') and #oauth2.hasScope('write')" )
 	public ResponseEntity<Categoria> criar( @Valid @RequestBody Categoria categoria, HttpServletResponse response ) {
 		Categoria categoriaSalva = categoriaRepository.save( categoria );
 
@@ -49,7 +49,7 @@ public class CategoriaResource {
 	}
 
 	@GetMapping( "/{id}" )
-	@PreAuthorize( "hasAuthority('ROLE_PESQUISAR_CATEGORIA')" )
+	@PreAuthorize( "hasAuthority('ROLE_PESQUISAR_CATEGORIA') and #oauth2.hasScope('read')" )
 	public ResponseEntity<Categoria> buscarPorId( @PathVariable Long id ) {
 
 		Optional<Categoria> categoriaObtida = categoriaRepository.findById( id );
