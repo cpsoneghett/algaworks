@@ -40,8 +40,7 @@ public class RefreshTokenCookiePreProcessorFilter implements Filter {
 			*/
 			
 			/* Abordagem nova */
-			String refreshToken = 
-		        Stream.of( req.getCookies() )
+		    Stream.of( req.getCookies() )
 		            .filter( cookie -> "refreshToken".equals( cookie.getName() ) )
 		            .findFirst()
 		            .map( cookie -> cookie.getValue() )
@@ -63,7 +62,7 @@ public class RefreshTokenCookiePreProcessorFilter implements Filter {
 		@Override
 		public Map<String, String[]> getParameterMap() {
 
-			ParameterMap<String, String[]> map = new ParameterMap( getRequest().getParameterMap() );
+			ParameterMap<String, String[]> map = new ParameterMap<String, String[]>( getRequest().getParameterMap() );
 			map.put( "refresh_token", new String[] { refreshToken } );
 			map.setLocked( true );
 
