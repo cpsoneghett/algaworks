@@ -71,10 +71,11 @@
 			<artifactId>flyway-core</artifactId>
 		</dependency>
 
-		<dependency>
+		<!-- DEPENDENCIA CAUSA A NAO GERACAO DOS CLASS FILES DENTRO DO JAR. DESCOBRIR O PORQUE -->
+		<!-- dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-jpamodelgen</artifactId>
-		</dependency>
+		</dependency-->
 
 		<dependency>
 			<groupId>javax.xml.bind</groupId>
