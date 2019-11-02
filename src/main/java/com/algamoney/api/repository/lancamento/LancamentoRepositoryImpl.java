@@ -16,7 +16,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.util.StringUtils;
 
-import com.algamoney.api.model.Categoria;
 import com.algamoney.api.model.Categoria_;
 import com.algamoney.api.model.Lancamento;
 import com.algamoney.api.model.Lancamento_;
@@ -43,7 +42,7 @@ public class LancamentoRepositoryImpl implements LancamentoRepositoryQuery {
 		TypedQuery<Lancamento> query = em.createQuery( criteria );
 		adicionarRestricoesDePaginacao( query, pageable );
 
-		return new PageImpl( query.getResultList(), pageable, total( lancamentoFilter ) );
+		return new PageImpl<Lancamento>( query.getResultList(), pageable, total( lancamentoFilter ) );
 	}
 
 	@Override
@@ -66,7 +65,7 @@ public class LancamentoRepositoryImpl implements LancamentoRepositoryQuery {
 		TypedQuery<ResumoLancamento> query = em.createQuery( criteria );
 		adicionarRestricoesDePaginacao( query, pageable );
 
-		return new PageImpl( query.getResultList(), pageable, total( lancamentoFilter ) );
+		return new PageImpl<ResumoLancamento>( query.getResultList(), pageable, total( lancamentoFilter ) );
 	}
 
 	private Predicate[] criaRestricoes( LancamentoFilter lancamentoFilter, CriteriaBuilder builder, Root<Lancamento> root ) {

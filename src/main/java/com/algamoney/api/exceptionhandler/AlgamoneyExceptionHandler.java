@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.algamoney.api.exceptionhandler.AlgamoneyExceptionHandler.Erro;
 import com.algamoney.api.service.exception.PessoaInexistenteOuInativaException;
 
 @ControllerAdvice
