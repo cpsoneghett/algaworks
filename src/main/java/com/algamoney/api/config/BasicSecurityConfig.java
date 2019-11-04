@@ -41,4 +41,10 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 			.sessionManagement().sessionCreationPolicy( SessionCreationPolicy.STATELESS ).and()
 			.csrf().disable();
 	}
+	
+	@Bean
+	@Override
+	public AuthenticationManager authenticationManager() throws Exception {
+		return super.authenticationManager();
+	}
 }
