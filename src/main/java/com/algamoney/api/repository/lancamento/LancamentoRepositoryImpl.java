@@ -52,12 +52,9 @@ public class LancamentoRepositoryImpl implements LancamentoRepositoryQuery {
 		CriteriaQuery<ResumoLancamento> criteria = builder.createQuery( ResumoLancamento.class );
 		Root<Lancamento> root = criteria.from( Lancamento.class );
 
-		criteria.select( builder.construct( ResumoLancamento.class, 
-			root.get( Lancamento_.ID ), root.get( Lancamento_.DESCRICAO ),
-			root.get( Lancamento_.DATA_VENCIMENTO ), root.get( Lancamento_.DATA_PAGAMENTO ), 
-			root.get( Lancamento_.VALOR ), root.get( Lancamento_.TIPO ),
-			root.get( Lancamento_.CATEGORIA ).get( Categoria_.NOME ), 
-			root.get( Lancamento_.PESSOA ).get( Pessoa_.NOME ) ) );
+		criteria.select( builder.construct( ResumoLancamento.class, root.get( Lancamento_.ID ), root.get( Lancamento_.DESCRICAO ),
+			root.get( Lancamento_.DATA_VENCIMENTO ), root.get( Lancamento_.DATA_PAGAMENTO ), root.get( Lancamento_.VALOR ), root.get( Lancamento_.TIPO ),
+			root.get( Lancamento_.CATEGORIA ).get( Categoria_.NOME ), root.get( Lancamento_.PESSOA ).get( Pessoa_.NOME ) ) );
 
 		Predicate[] predicates = criaRestricoes( lancamentoFilter, builder, root );
 		criteria.where( predicates );
