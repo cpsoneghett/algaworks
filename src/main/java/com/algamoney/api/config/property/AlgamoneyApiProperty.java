@@ -21,7 +21,6 @@ public class AlgamoneyApiProperty {
 		this.origemPermitida = origemPermitida;
 	}
 
-	// TODO: Verificar depois origem do Warning
 	public static class Seguranca {
 
 		private boolean enableHttps;
