@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -18,6 +19,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 import com.algamoney.api.config.token.CustomTokenEnhancer;
 
+@Profile( "oauth-security" )
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
@@ -34,14 +36,14 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 			.secret( "$2a$10$G1j5Rf8aEEiGc/AET9BA..xRR.qCpOUzBZoJd8ygbGy6tb3jsMT9G" )
 			.scopes( "read", "write" )
 			.authorizedGrantTypes( "password", "refresh_token" )
-			.accessTokenValiditySeconds( 300 )
+			.accessTokenValiditySeconds( 1800 )
 			.refreshTokenValiditySeconds( 3600 * 24 )
 		.and()
 			.withClient( "mobile" )
 			.secret( "$2a$10$AzdmwL4EO4NRzgvOUQt2PebZr42E9STbJcn7i0NcxSiPBOeAIDkF6" )
 			.scopes( "read" )
 			.authorizedGrantTypes( "password", "refresh_token" )
-			.accessTokenValiditySeconds( 300 ) // Tempo de duração do Token (5min)
+			.accessTokenValiditySeconds( 1800 )
 			.refreshTokenValiditySeconds( 3600 * 24 );
 			
 	}
