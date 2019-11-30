@@ -9,6 +9,7 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
@@ -29,22 +30,16 @@ public class RefreshTokenCookiePreProcessorFilter implements Filter {
 		if ( "/oauth/token".equalsIgnoreCase( req.getRequestURI() ) 
 			&& "refresh_token".equals( req.getParameter( "grant_type" ) ) 
 			&& req.getCookies() != null ) {
-
-			/* Abordagem 'antiga'
-			for ( Cookie cookie : req.getCookies() ) {
-				if ( cookie.getName().equals( "refreshToken" ) ) {
-					String refreshToken = cookie.getValue();
-					req = new MyServletRequestWrapper( req, refreshToken );
-				}
-			}
-			*/
 			
 			/* Abordagem nova */
-		    Stream.of( req.getCookies() )
+		    String refreshToken = 
+		    	Stream.of( req.getCookies() )
 		            .filter( cookie -> "refreshToken".equals( cookie.getName() ) )
 		            .findFirst()
 		            .map( cookie -> cookie.getValue() )
 		            .orElse( null );
+		    
+		    req = new MyServletRequestWrapper( req, refreshToken );
 		}
 		
 		chain.doFilter( req, response );
